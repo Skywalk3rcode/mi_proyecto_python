@@ -23,6 +23,8 @@
             --accent-gold: #e9c46a;
             --text-main: #f8f9fa;
             --text-sub: #b7e4c7;
+            --quiz-correct: #40916c;
+            --quiz-wrong: #c1121f;
         }
 
         * {
@@ -36,17 +38,19 @@
             background: var(--bg-gradient);
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             color: var(--text-main);
             overflow-x: hidden;
             position: relative;
-            padding: 20px;
+            padding: 40px 20px;
+            gap: 30px;
         }
 
         /* SVG Background Decorations */
         .bg-shape {
-            position: absolute;
+            position: fixed;
             z-index: 0;
             opacity: 0.12;
             pointer-events: none;
@@ -78,7 +82,7 @@
             padding: 60px 40px;
             text-align: center;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
-            animation: fadeIn 1s ease-out;
+            animation: fadeIn 0.8s ease-out;
         }
 
         @keyframes fadeIn {
@@ -93,7 +97,7 @@
             }
         }
 
-        /* Header e Icono Principal */
+        /* Hero */
         .hero-icon-wrapper {
             display: inline-flex;
             justify-content: center;
@@ -118,7 +122,6 @@
             fill: var(--accent-sage);
         }
 
-        /* Tipografía Grande */
         h1 {
             font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
@@ -140,7 +143,7 @@
             font-weight: 400;
         }
 
-        /* Cuadrícula de Tarjetas con SVGs */
+        /* Feature Cards */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -184,7 +187,7 @@
             line-height: 1.5;
         }
 
-        /* Badge de Servidor */
+        /* Status Badge */
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -225,18 +228,366 @@
             }
         }
 
+        /* ─── SECCIÓN CREATIVA DEL ESTUDIANTE ─── */
+        .student-section {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            width: 100%;
+            background: linear-gradient(135deg, rgba(233, 196, 106, 0.12), rgba(82, 183, 136, 0.1));
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(233, 196, 106, 0.35);
+            border-radius: 28px;
+            padding: 48px 40px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        .student-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 20px;
+            background: rgba(233, 196, 106, 0.15);
+            border: 1px solid rgba(233, 196, 106, 0.5);
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .student-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #f4a261 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+        }
+
+        .student-section .student-desc {
+            font-size: 1.05rem;
+            color: var(--text-sub);
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto 28px;
+        }
+
+        .stack-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .pill {
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            border: 1px solid;
+        }
+
+        .pill-python {
+            background: rgba(55, 118, 171, 0.2);
+            border-color: #3776AB;
+            color: #a8d4f7;
+        }
+
+        .pill-flask {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.25);
+            color: #e0e0e0;
+        }
+
+        .pill-html {
+            background: rgba(228, 77, 38, 0.15);
+            border-color: #E44D26;
+            color: #f4a97f;
+        }
+
+        .pill-css {
+            background: rgba(38, 77, 228, 0.15);
+            border-color: #2659E4;
+            color: #9fb8f7;
+        }
+
+        .pill-git {
+            background: rgba(241, 80, 47, 0.15);
+            border-color: #F1502F;
+            color: #f7a997;
+        }
+
+        .pill-render {
+            background: rgba(70, 227, 183, 0.12);
+            border-color: #46E3B7;
+            color: #46E3B7;
+        }
+
+        /* ─── QUIZ ─── */
+        .quiz-section {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(149, 213, 178, 0.25);
+            border-radius: 28px;
+            padding: 48px 40px;
+            text-align: left;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+
+        .quiz-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .quiz-icon-wrap {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, rgba(82, 183, 136, 0.25), rgba(149, 213, 178, 0.3));
+            border: 1px solid rgba(149, 213, 178, 0.4);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .quiz-icon-wrap svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--accent-sage);
+        }
+
+        .quiz-header-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--primary-light);
+        }
+
+        .quiz-header-text p {
+            font-size: 0.88rem;
+            color: var(--accent-sage);
+            margin-top: 2px;
+        }
+
+        .quiz-question {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-main);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            padding: 20px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--accent-green);
+            border-radius: 12px;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 16px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.04);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            user-select: none;
+        }
+
+        .quiz-option:hover {
+            background: rgba(82, 183, 136, 0.1);
+            border-color: var(--accent-green);
+            transform: translateX(4px);
+        }
+
+        .quiz-option.selected {
+            background: rgba(82, 183, 136, 0.15);
+            border-color: var(--accent-sage);
+        }
+
+        .quiz-option.correct {
+            background: rgba(64, 145, 108, 0.2);
+            border-color: #40916c;
+            animation: highlight 0.4s ease;
+        }
+
+        .quiz-option.wrong {
+            background: rgba(193, 18, 31, 0.15);
+            border-color: #c1121f;
+        }
+
+        @keyframes highlight {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.015);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .option-letter {
+            width: 32px;
+            height: 32px;
+            background: rgba(149, 213, 178, 0.15);
+            border: 1px solid rgba(149, 213, 178, 0.3);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+            color: var(--accent-sage);
+            flex-shrink: 0;
+            transition: all 0.25s;
+        }
+
+        .quiz-option.selected .option-letter {
+            background: var(--accent-green);
+            color: #fff;
+            border-color: var(--accent-green);
+        }
+
+        .quiz-option.correct .option-letter {
+            background: #40916c;
+            color: #fff;
+            border-color: #40916c;
+        }
+
+        .quiz-option.wrong .option-letter {
+            background: #c1121f;
+            color: #fff;
+            border-color: #c1121f;
+        }
+
+        .option-text {
+            font-size: 0.97rem;
+            color: var(--text-sub);
+            line-height: 1.55;
+            padding-top: 5px;
+        }
+
+        .quiz-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #40916c, #52b788);
+            border: none;
+            border-radius: 14px;
+            color: #fff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .quiz-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #52b788, #74c69d);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(82, 183, 136, 0.35);
+        }
+
+        .quiz-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .quiz-feedback {
+            display: none;
+            margin-top: 20px;
+            padding: 18px 22px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.6;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .quiz-feedback.correct {
+            display: block;
+            background: rgba(64, 145, 108, 0.2);
+            border: 1px solid #40916c;
+            color: #b7e4c7;
+        }
+
+        .quiz-feedback.wrong {
+            display: block;
+            background: rgba(193, 18, 31, 0.15);
+            border: 1px solid #c1121f;
+            color: #ffc8c8;
+        }
+
+        .quiz-retry-btn {
+            display: none;
+            margin-top: 14px;
+            padding: 10px 24px;
+            background: transparent;
+            border: 1px solid var(--accent-sage);
+            border-radius: 10px;
+            color: var(--accent-sage);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .quiz-retry-btn:hover {
+            background: rgba(149, 213, 178, 0.1);
+        }
+
+        /* Footer */
+        .footer-note {
+            position: relative;
+            z-index: 1;
+            color: rgba(183, 228, 199, 0.55);
+            font-size: 0.82rem;
+            text-align: center;
+        }
+
         /* Responsivo */
         @media (max-width: 600px) {
-            .container {
-                padding: 40px 24px;
+
+            .container,
+            .student-section,
+            .quiz-section {
+                padding: 36px 22px;
             }
 
             h1 {
                 font-size: 2.3rem;
             }
 
-            .subtitle {
-                font-size: 1.05rem;
+            .student-section h2 {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -244,29 +595,28 @@
 
 <body>
 
-    <!-- SVG Fondo Decorativo 1: Hojas -->
+    <!-- SVG Decorativos de fondo -->
     <svg class="bg-shape bg-shape-1" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
         <path fill="#52B788"
             d="M44.7,-67.6C56.9,-58.5,65.1,-44.6,70.7,-29.9C76.3,-15.1,79.2,0.6,76.5,15.6C73.8,30.6,65.4,45,53.8,55.3C42.2,65.6,27.3,71.8,11.5,73.6C-4.3,75.4,-21.1,72.7,-35.8,65.1C-50.5,57.5,-63.1,45,-70.6,29.9C-78.1,14.8,-80.5,-2.9,-76.3,-19C-72.1,-35.1,-61.3,-49.6,-47.5,-58.4C-33.7,-67.2,-16.9,-70.3,-0.1,-70.2C16.6,-70.1,32.5,-76.7,44.7,-67.6Z"
             transform="translate(100 100)" />
     </svg>
-
-    <!-- SVG Fondo Decorativo 2: Montañas/Ramas -->
     <svg class="bg-shape bg-shape-2" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
         <path fill="#74C69D"
             d="M38.1,-52.3C49.7,-43.8,60,-32.8,65.2,-19.4C70.4,-6.1,70.4,9.6,64.8,23.3C59.2,37,47.9,48.7,34.7,56.7C21.4,64.7,6.3,69,-9.2,70.3C-24.7,71.6,-40.5,69.9,-52.8,61.4C-65.1,52.8,-73.8,37.3,-76.2,20.8C-78.6,4.3,-74.6,-13.3,-66.1,-27.8C-57.6,-42.3,-44.5,-53.8,-30.7,-61.2C-16.9,-68.5,-2.4,-71.7,10.6,-68C23.6,-64.3,26.5,-60.8,38.1,-52.3Z"
             transform="translate(100 100)" />
     </svg>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!--         SECCIÓN PRINCIPAL — HERO           -->
+    <!-- ═══════════════════════════════════════════ -->
     <div class="container">
 
-        <!-- Estado del Servidor -->
         <div class="status-badge">
             <span class="status-dot"></span>
-            Servidor Flask Activo & Corriendo
+            Servidor Flask Activo &amp; Corriendo
         </div>
 
-        <!-- Icono Principal SVG: Árbol de la Vida -->
         <div class="hero-icon-wrapper">
             <svg class="hero-icon" viewBox="0 0 24 24">
                 <path
@@ -274,15 +624,12 @@
             </svg>
         </div>
 
-        <!-- Título Principal Centrado y Grande -->
         <h1>¡Bienvenido a la Experiencia Flask!</h1>
         <p class="subtitle">Tu aplicación en Python está lista, conectada y lista para florecer en un entorno armónico
             con los colores de la naturaleza.</p>
 
-        <!-- Cuadrícula con SVGs Ilustrativos -->
         <div class="features-grid">
 
-            <!-- Tarjeta 1: Hoja / Crecimiento -->
             <div class="feature-card">
                 <svg class="card-icon" viewBox="0 0 24 24">
                     <path
@@ -292,7 +639,6 @@
                 <p>Estilos inspirados en bosques, vegetación y paletas armónicas relajantes.</p>
             </div>
 
-            <!-- Tarjeta 2: Montaña / Solidez -->
             <div class="feature-card">
                 <svg class="card-icon" viewBox="0 0 24 24">
                     <path d="M14,6L10.25,11L13.1,14.8L11.5,16C9.81,13.75 7,10 7,10L1,18H23L14,6Z" />
@@ -301,19 +647,197 @@
                 <p>Potenciado por la solidez y velocidad del backend en Python y Flask.</p>
             </div>
 
-            <!-- Tarjeta 3: Agua / Fluidez -->
             <div class="feature-card">
                 <svg class="card-icon" viewBox="0 0 24 24">
                     <path d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z" />
                 </svg>
                 <h3>Fluidez Visual</h3>
                 <p>Efectos modernos de cristal, sombras suaves e interacciones responsivas.</p>
-
             </div>
 
         </div>
-        <p align="center">Creado por Feibert Alirio Guzmán Pérez</p>
     </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--     SECCIÓN CREATIVA — PRESENTACIÓN        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="student-section">
+
+        <div class="student-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" />
+            </svg>
+            Ingeniería de Software II — Parcial
+        </div>
+
+        <h2>Miguel Ángel Ramírez Corredor</h2>
+
+        <p class="student-desc">
+            Estudiante de Ingeniería de Software II, apasionado por construir aplicaciones web robustas,
+            elegantes y desplegadas en la nube. Este proyecto demuestra mi dominio del stack tecnológico
+            seleccionado, el control de versiones con Git y GitHub, y la arquitectura MVC aplicada con Flask.
+        </p>
+
+        <div class="stack-pills">
+            <span class="pill pill-python">🐍 Python 3</span>
+            <span class="pill pill-flask">⚗️ Flask 3</span>
+            <span class="pill pill-html">🌐 HTML5</span>
+            <span class="pill pill-css">🎨 CSS3 Vanilla</span>
+            <span class="pill pill-git">📦 Git &amp; GitHub</span>
+            <span class="pill pill-render">☁️ Render</span>
+        </div>
+
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--      QUIZ — ARQUITECTURAS DE SOFTWARE      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="quiz-section">
+
+        <div class="quiz-header">
+            <div class="quiz-icon-wrap">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
+                </svg>
+            </div>
+            <div class="quiz-header-text">
+                <h2>Quiz: Stack &amp; Arquitecturas de Software</h2>
+                <p>Selecciona la respuesta correcta y obtén retroalimentación instantánea</p>
+            </div>
+        </div>
+
+        <div class="quiz-question" id="quiz-question">
+            ¿Cuál es la principal característica de la Arquitectura Hexagonal (Ports &amp; Adapters)?
+        </div>
+
+        <div class="quiz-options" id="quiz-options">
+
+            <div class="quiz-option" id="opt-A" onclick="selectOption('A')">
+                <div class="option-letter">A</div>
+                <div class="option-text">Divide la aplicación en capas: Presentación, Lógica y Datos, de forma
+                    estrictamente lineal.</div>
+            </div>
+
+            <div class="quiz-option" id="opt-B" onclick="selectOption('B')">
+                <div class="option-letter">B</div>
+                <div class="option-text">Aísla la lógica de negocio del núcleo de la aplicación de cualquier tecnología
+                    externa mediante puertos y adaptadores.</div>
+            </div>
+
+            <div class="quiz-option" id="opt-C" onclick="selectOption('C')">
+                <div class="option-letter">C</div>
+                <div class="option-text">Organiza el código en microservicios independientes que se comunican
+                    exclusivamente por mensajes HTTP.</div>
+            </div>
+
+            <div class="quiz-option" id="opt-D" onclick="selectOption('D')">
+                <div class="option-letter">D</div>
+                <div class="option-text">Utiliza un único punto de entrada (front controller) que enruta todas las
+                    peticiones a sus respectivos manejadores.</div>
+            </div>
+
+        </div>
+
+        <button class="quiz-btn" id="quiz-btn" onclick="submitQuiz()" disabled>
+            Confirmar respuesta
+        </button>
+
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+
+        <button class="quiz-retry-btn" id="quiz-retry" onclick="resetQuiz()">
+            🔄 Intentar de nuevo
+        </button>
+
+    </div>
+
+    <!-- Footer -->
+    <p class="footer-note">Creado por Feibert Alirio Guzmán Pérez · Ingeniería de Software II · 2026</p>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--           LÓGICA DEL QUIZ (JS)             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <script>
+        let selectedOption = null;
+        let answered = false;
+
+        function selectOption(letra) {
+            if (answered) return;
+
+            // Deseleccionar anterior
+            if (selectedOption) {
+                document.getElementById('opt-' + selectedOption).classList.remove('selected');
+            }
+
+            selectedOption = letra;
+            document.getElementById('opt-' + letra).classList.add('selected');
+            document.getElementById('quiz-btn').disabled = false;
+        }
+
+        function submitQuiz() {
+            if (!selectedOption || answered) return;
+            answered = true;
+
+            // Deshabilitar todas las opciones
+            document.querySelectorAll('.quiz-option').forEach(el => {
+                el.style.cursor = 'not-allowed';
+                el.style.pointerEvents = 'none';
+            });
+
+            document.getElementById('quiz-btn').disabled = true;
+
+            // Llamar al endpoint Flask
+            fetch('/quiz', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ respuesta: selectedOption })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    const feedbackEl = document.getElementById('quiz-feedback');
+                    const retryBtn = document.getElementById('quiz-retry');
+
+                    // Marcar opción seleccionada
+                    const selectedEl = document.getElementById('opt-' + selectedOption);
+                    selectedEl.classList.remove('selected');
+
+                    if (data.correcta) {
+                        selectedEl.classList.add('correct');
+                        feedbackEl.className = 'quiz-feedback correct';
+                    } else {
+                        selectedEl.classList.add('wrong');
+                        // Mostrar la correcta
+                        document.getElementById('opt-' + data.respuesta_correcta).classList.add('correct');
+                        feedbackEl.className = 'quiz-feedback wrong';
+                    }
+
+                    feedbackEl.textContent = data.retroalimentacion;
+                    feedbackEl.style.display = 'block';
+                    retryBtn.style.display = 'inline-block';
+                })
+                .catch(() => {
+                    document.getElementById('quiz-feedback').className = 'quiz-feedback wrong';
+                    document.getElementById('quiz-feedback').textContent = '⚠️ Error de conexión con el servidor.';
+                    document.getElementById('quiz-feedback').style.display = 'block';
+                });
+        }
+
+        function resetQuiz() {
+            selectedOption = null;
+            answered = false;
+
+            document.querySelectorAll('.quiz-option').forEach(el => {
+                el.className = 'quiz-option';
+                el.style.cursor = 'pointer';
+                el.style.pointerEvents = 'auto';
+            });
+
+            document.getElementById('quiz-btn').disabled = true;
+            document.getElementById('quiz-feedback').style.display = 'none';
+            document.getElementById('quiz-feedback').textContent = '';
+            document.getElementById('quiz-retry').style.display = 'none';
+        }
+    </script>
 
 </body>
 
