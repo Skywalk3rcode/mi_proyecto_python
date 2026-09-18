@@ -284,5 +284,15 @@ Abre tu navegador en:
 
 ---
 
+## 🔗 Enlaces del Proyecto
+
+| Recurso | Enlace |
+|---------|--------|
+| 📦 Repositorio GitHub | [g3in-unilasallista/mi_proyecto_python](https://github.com/g3in-unilasallista/mi_proyecto_python.git) |
+| 🔀 Pull Request | [Miguel Ángel Ramírez Corredor · Pull Request #15](https://github.com/g3in-unilasallista/mi_proyecto_python/pull/15) |
+| ☁️ Aplicación en Render | [mi-proyecto-python-8epa.onrender.com](https://mi-proyecto-python-8epa.onrender.com) |
+
+---
+
 ### 👤 Autor
-**Feibert Alirio Guzmán Pérez**
+**Miguel Ángel Ramírez Corredor**
